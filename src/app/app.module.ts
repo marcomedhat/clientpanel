@@ -38,7 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firestore, 'clientpanel'),
+    AngularFireModule.initializeApp(environment.firebase, 'clientpanel'),
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
