@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ClientService } from '../../services/client.service';
 import { Router } from '@angular/router';
+import { SettingsService } from '../../services/settings.service';
 
 import { Client } from '../../models/Client';
 
@@ -18,16 +19,19 @@ export class AddClientComponent implements OnInit {
 		phone: '',
 		balance: 0
 	}
-	disableBalanceOnAdd: boolean = true;
+	disableBalanceOnAdd: boolean;
+	
 	@ViewChild('clientForm') form: any;
 
   constructor(
   	private flashMessage: FlashMessagesService,
 		private clientSevice: ClientService,
-		private router: Router
+		private router: Router,
+		private settingService: SettingsService
   ) { }
 
   ngOnInit() {
+		this.disableBalanceOnAdd = this.settingService.getSettings().disableBalanceOnAdd;
   }
 
   onSubmit({value, valid}: {value: Client, valid: boolean}) {
